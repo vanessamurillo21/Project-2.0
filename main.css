@@ -1,0 +1,117 @@
+
+body {
+    width: 80%;
+    max-width: 1024px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    padding: 100px 50px 50px 40px;
+    position: relative;
+    top: 50px;
+  }
+  
+  h1 {
+    font-weight: bold;
+    font-style: normal;
+    font-family: "Times New Roman";
+    font-size: 72px;
+    color:rgb(224, 165, 39);
+    text-align: center;
+  }
+  
+  .container-padding50 {
+    padding: 80px 0px 0px 30px;
+  }
+  
+  .container-textinput {
+    width: 70%;
+    display: inline-block;
+    padding: 16px;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Light', Helvetica, sans-serif;
+  }
+  
+  .container-button {
+    width: 20%;
+    display: inline-block;
+    padding: 16px;
+    background-color: rgb(224, 165, 39);
+    color: white;
+    font-size: 20px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, sans-serif;
+  
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+  
+  .container-image {
+    width: 30%;
+    display: block;
+    float: left;
+    margin-right: 3%;
+  }
+  
+  /* Navigation Bar Container */
+.navbar {
+    background-color: #333; /* Background color of the navbar */
+    overflow: hidden;       /* Clear floats */
+}
+
+/* Navigation Bar Links */
+.navbar a {
+    float: left;                    /* Align links horizontally */
+    display: block;                 /* Display links as blocks */
+    color: #f2f2f2;                 /* Text color */
+    text-align: center;             /* Center text */
+    padding: 14px 20px;             /* Padding around text */
+    text-decoration: none;          /* Remove underline */
+}
+
+/* Links on Hover */
+.navbar a:hover {
+    background-color: #ddd;         /* Background color on hover */
+    color: black;                   /* Text color on hover */
+}
+
+/* Responsive Design: Stack links vertically on small screens */
+@media screen and (max-width: 600px) {
+    .navbar a {
+        float: none;                /* Stack links vertically */
+        display: block;             /* Full-width links */
+        text-align: left;           /* Align text to the left */
+    }
+}
+
+/* Pagination Container */
+.pagination {
+  display: flex;
+  justify-content: center; /* Center pagination links */
+  margin: 20px 0;
+}
+
+/* Pagination Links */
+.pagination a {
+  color: #007bff;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  margin: 0 4px;
+}
+
+/* Pagination Links on Hover */
+.pagination a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Disable link for the current page */
+.pagination .active {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid #007bff;
+  cursor: default;
+}
+
+  
