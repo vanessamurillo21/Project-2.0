@@ -11,6 +11,8 @@ Technologies Used ( .html , .css ): HTML, CSS and Javascript
 Ideas for future improvement (minimum of 3)
 1. Larger population of images for users to look for
 
-2. 
+2. Have the images in rows and columns rather than having aside bar
+
+3. Creating a random section that will pop up as the user opens the website
 
 
