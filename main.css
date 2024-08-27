@@ -2,11 +2,43 @@ body {
   width: 80%;
   max-width: 1024px;
   margin: 0 auto;
-  padding: 0 10px; /* Optional: add padding for better spacing */
+  padding: 0 10px; 
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.neonderthaw-regular {
+  font-family: 'Neonderthaw';
+  font-weight: 500;
+  font-style: normal;
+}
+
+.header h1 {
+  font-family: 'Neonderthaw';
+  font-size: 70px;
+  color: rgb(224, 165, 39);
+  font-weight: bold;
+}
+
+.container-textinput {
+  width: 70%;
+  display: inline-block;
+  padding: 5px;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Light', Helvetica, sans-serif;
+}
+
+.container-button {
+  width: 20%;
+  display: inline-block;
+  padding: 5px;
+  background-color: rgb(224, 165, 39);
+  color: white;
+  font-size: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .header {
-  padding: 100px 50px 50px 40px;
+  padding: 50px 50px 50px 40px;
   position: relative;
   top: 20px;
 }
@@ -57,7 +89,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 25px;
 }
 
 .navbar-menu {
@@ -178,6 +210,6 @@ h1 {
   margin: 20px auto;
 }
 
-}
+
 
   
