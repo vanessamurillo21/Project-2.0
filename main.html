@@ -1,61 +1,41 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Engine</title>
-    <link rel="stylesheet" href="main.css"/>
-    <link rel="stylesheet" href="main.scss">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
+    <div id="top"></div>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <ul class="navbar-menu">
-            <li class="navbar-item"><a href="#home" class="navbar-link">Home</a></li>
+        <div id="menuToggle" class="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul id="navbarMenu" class="navbar-menu">
+            <li class="navbar-item"><a href="Project2.0_mainhtml.html" class="navbar-link">Home</a></li>
             <li class="navbar-item"><a href="#about" class="navbar-link">About</a></li>
-            <li class="navbar-item"><a href="#services" class="navbar-link">Services</a></li>
-            <li class="navbar-item"><a href="#contact" class="navbar-link">Contact</a></li>
         </ul>
     </nav>
 
     <div class="header">
-        <h1>Gif Search Engine</h1>
+        <h1>Meme It</h1>
     </div>
     <div class="container container-padding50">
-        <input type="text" class="js-userinput container-textinput" placeholder="Enter your search term"/>
-        <button class="js-go container-button">Search!</button>
+        <input type="text" id="searchInput" class="container-textinput" placeholder="Enter your search term">
+        <button id="searchButton" class="container-button">Search!</button>
     </div>
-    <div class="container container-padding50 js-container">
-        <!-- GIFs will be displayed here -->
+    <div id="resultsContainer" class="container js-container">
+        <!-- GIFs or error messages will be displayed here -->
     </div>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagination Example</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-</head>
-<body>
-    <!-- Pagination Container -->
-    <div class="pagination">
-        <a href="#" class="prev" id="prev">« Prev</a>
-        <a href="#" class="page-number" id="page1">1</a>
-        <a href="#" class="page-number" id="page2">2</a>
-        <a href="#" class="page-number" id="page3">3</a>
-        <a href="#" class="page-number" id="page4">4</a>
-        <a href="#" class="page-number" id="page5">5</a>
-        <a href="#" class="next" id="next">Next »</a>
-    </div>
-
-    <!-- Your page content goes here -->
-
-    <script src="scripts.js"></script> <!-- Link to your JavaScript file -->
-</body>
-</html>
+    <button id="loadMoreButton" class="container-button" style="display: none;">Load More</button>
 
     <!-- Link to JavaScript File -->
     <script src="main.js"></script>
 </body>
+</html>
+
 </html>
 
