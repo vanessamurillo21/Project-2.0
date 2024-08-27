@@ -1,88 +1,88 @@
-// Function to get user input from the input field
-// Function to get user input from the input field
-function getUserInput() {
-    return document.querySelector(".js-userinput").value;
-}
-
-// Function to display GIFs in the UI
-function displayGifs(data) {
-    const container = document.querySelector(".js-container"); // Update class name to match HTML
-    container.innerHTML = ""; // Clear previous results
-
-    data.data.forEach(gif => {
-        const img = document.createElement("img");
-        img.src = gif.images.fixed_height.url; // Use appropriate image size if needed
-        img.alt = gif.title; // Add alt text for accessibility
-        container.appendChild(img);
-    });
-}
-
-// Function to search Giphy with the user input
-function searchGiphy(query) {
-    const apiKey = 'z6j5WFh7KCxZK0eygDJ9WQwxrWqEjGCP';
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${encodeURIComponent(query)}&limit=5`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            displayGifs(data);
-        })
-        .catch(error => console.error('Error:', error));
-}
-
-// Add event listener for the "Go" button
-document.querySelector(".js-go").addEventListener("click", function () {
-    const userInput = getUserInput(); // Use the function to get user input
-    searchGiphy(userInput);
-});
-
-// Add event listener for the "Enter" key in the input field
-document.querySelector(".js-userinput").addEventListener("keyup", function (e) {
-    if (e.which === 13) { // 13 is the Enter key
-        const userInput = getUserInput(); // Use the function to get user input
-        searchGiphy(userInput);
-    }
-});
-
 document.addEventListener('DOMContentLoaded', () => {
-    const pages = document.querySelectorAll('.page-number');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
-    let currentPage = 1;
+    const searchButton = document.getElementById('searchButton');
+    const userInput = document.getElementById('searchInput');
+    const resultContainer = document.getElementById('resultsContainer');
+    const loadMoreButton = document.getElementById('loadMoreButton');
+    const menuToggle = document.getElementById('menuToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
 
-    function showPage(pageNumber) {
-        pages.forEach(page => {
-            page.classList.remove('active');
-        });
-        document.getElementById(`page${pageNumber}`).classList.add('active');
-        currentPage = pageNumber;
+    let query = '';
+    let offset = 0;
+    const limit = 10; // Number of GIFs per page
 
-        // Add your logic to display page content based on `currentPage`
-        console.log(`Showing content for page ${pageNumber}`);
-    }
+    // Function to fetch GIFs from Giphy API
+    const fetchGifs = async (query, offset, limit) => {
+        const apiKey = 'z6j5WFh7KCxZK0eygDJ9WQwxrWqEjGCP'; // Replace with your Giphy API key
+        const url = `https://api.giphy.com/v1/gifs/search?q=${encodeURIComponent(query)}&api_key=${apiKey}&limit=${limit}&offset=${offset}`;
 
-    prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentPage > 1) {
-            showPage(currentPage - 1);
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+
+            if (data.data.length > 0) {
+                displayGifs(data.data);
+                loadMoreButton.style.display = data.pagination.total_count > offset + limit ? 'block' : 'none';
+            } else {
+                if (offset === 0) {
+                    resultContainer.innerHTML = '<p class="error-message">No GIFs found for your search term.</p>';
+                } else {
+                    loadMoreButton.style.display = 'none'; // Hide button if no more results
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching GIFs:', error);
+            resultContainer.innerHTML = '<p class="error-message">Failed to fetch GIFs. Please try again later.</p>';
+        }
+    };
+
+    // Function to display GIFs in the UI
+    const displayGifs = (gifs) => {
+        resultContainer.innerHTML += gifs.map(gif => `
+            <div class="gif-item">
+                <img src="${gif.images.fixed_height.url}" alt="${gif.title}" />
+            </div>
+        `).join('');
+    };
+
+    // Event listener for the search button
+    searchButton.addEventListener('click', () => {
+        query = userInput.value.trim();
+        if (query) {
+            offset = 0; // Reset offset for new search
+            resultContainer.innerHTML = ''; // Clear previous results
+            fetchGifs(query, offset, limit);
+        } else {
+            resultContainer.innerHTML = '<p class="error-message">Please enter a search term.</p>';
         }
     });
 
-    nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (currentPage < pages.length) {
-            showPage(currentPage + 1);
+    // Event listener for pressing Enter in the input field
+    userInput.addEventListener('keyup', (e) => {
+        if (e.which === 13) { // 13 is the Enter key
+            query = userInput.value.trim();
+            if (query) {
+                offset = 0; // Reset offset for new search
+                resultContainer.innerHTML = ''; // Clear previous results
+                fetchGifs(query, offset, limit);
+            } else {
+                resultContainer.innerHTML = '<p class="error-message">Please enter a search term.</p>';
+            }
         }
     });
 
-    pages.forEach(page => {
-        page.addEventListener('click', (e) => {
-            e.preventDefault();
-            const pageNumber = parseInt(e.target.textContent);
-            showPage(pageNumber);
-        });
+    // Event listener for the "Load More" button
+    loadMoreButton.addEventListener('click', () => {
+        offset += limit; // Increase offset for next page
+        fetchGifs(query, offset, limit);
     });
 
-    // Initialize the first page as active
-    showPage(currentPage);
+    // Event listener for the hamburger menu toggle
+    menuToggle.addEventListener('click', () => {
+        navbarMenu.classList.toggle('active');
+    });
+});
+
 });
